@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Photo</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="upload.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <a href="index.html" class="logo">ThePic</a>
+    <div class="search-box">
+      <input type="text" placeholder="Search..." />
+      <span class="search-icon">🔍</span>
+    </div>
+    <button class="upload-btn" onclick="window.location.href='upload.html'">UpPhoto</button>
+  </header>
+
+  <!-- Upload Form Content -->
+  <div class="upload-container">
+
+    <!-- Left: File Upload -->
+    <div class="upload-box">
+      <label for="fileInput" class="drop-area">
+        <div class="upload-icon">⬆</div>
+        <p>Select a file or drag and drop it here</p>
+        <small>
+          We recommend using high-quality .jpg files under 20 MB or .mp4 files under 200 MB.
+        </small>
+        <input type="file" id="fileInput" name="file" hidden>
+      </label>
+
+      <!-- ✅ รูป preview -->
+      <div class="preview-box">
+        <img id="previewImage" />
+      </div>
+
+      <button type="button" class="url-btn">Save from URL</button>
+    </div>
+
+    <!-- Right: Form Fields -->
+    <form class="upload-form">
+      <input type="text" placeholder="Enter title" required>
+      <textarea placeholder="Add a detailed description" rows="4"></textarea>
+      <input type="url" placeholder="Add a link">
+
+      <!-- Tag buttons -->
+      <div class="tag-buttons">
+        <label>Select tags:</label>
+        <div class="tag-list">
+          <button type="button" class="tag" data-value="nature">Nature</button>
+          <button type="button" class="tag" data-value="people">People</button>
+          <button type="button" class="tag" data-value="animals">Animals</button>
+          <button type="button" class="tag" data-value="technology">Technology</button>
+          <button type="button" class="tag" data-value="cartoon">Cartoon</button>
+          <button type="button" class="tag" data-value="Work">Work</button>
+          <button type="button" class="tag" data-value="others">Others</button>
+        </div>
+        <input type="hidden" name="tags" id="selectedTags" />
+      </div>
+
+      <button type="submit" class="submit-btn">Upload</button>
+    </form>
+  </div>
+
+  <!-- ✅ JavaScript -->
+  <script>
+    const tagButtons = document.querySelectorAll('.tag');
+    const selectedTagsInput = document.getElementById('selectedTags');
+    const fileInput = document.getElementById('fileInput');
+    const previewImage = document.getElementById('previewImage');
+    const urlBtn = document.querySelector('.url-btn');
+
+    tagButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        const selected = Array.from(tagButtons)
+          .filter(b => b.classList.contains('active'))
+          .map(b => b.dataset.value);
+        selectedTagsInput.value = selected.join(',');
+      });
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          previewImage.src = reader.result;
+          previewImage.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      } else {
+        previewImage.style.display = 'none';
+      }
+    });
+
+    urlBtn.addEventListener('click', () => {
+      const url = prompt('Paste the image URL here:');
+      if (url) {
+        previewImage.src = url;
+        previewImage.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>
