@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+  }
+  
+  body {
+    background-color: #64c0f8;
+    color: #000;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: white;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2196f3;
+    text-decoration: none; /* ลบเส้นใต้ลิงก์ */
+  }
+  
+
+  
+  .search-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-box input {
+    width: 100%;
+    padding: 6px 36px 6px 12px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    outline: none;
+    height: 36px; /* ความสูงรวมแบบพอดี */
+  }
+  
+  
+  .search-icon {
+    position: absolute;
+    right: 12px;
+    pointer-events: none;
+    font-size: 1rem;
+  }
+  
+  
+  .upload-btn {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 8px 20px;
+    box-shadow: 2px 2px 0 black;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  
+  .menu-bar {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 20px 10px;
+    background-color: #64c0f8;
+    gap: 10px;
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .menu-bar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+  
+  .menu-bar button {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 8px 20px;
+    box-shadow: 2px 2px 0 black;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 0 0 auto;
+  }
+  
+  
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 20px 40px;
+  }
+  
+  .image-card {
+    background: linear-gradient(to top, #a1c900 40%, #d8f4ff 100%);
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+  }
+  
+  .image-card::before {
+    content: "☁️";
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 30px;
+  }
+  
+  
